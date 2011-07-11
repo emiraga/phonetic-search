@@ -107,8 +107,7 @@ h1.logo{height:143px; background:url("../img/logo.png") no-repeat center center;
 .stepsillustr .step1{ position: absolute; top: 0; left: 10px; }
 .stepsillustr .step2{ position: absolute; top: 0; left: 195px; }
 .stepsillustr .step3{ position: absolute; top: 0; left: 380px; }
-.samplewrapper{max-width: 630px; margin: 3.5em auto; padding:0.5em;
-    border: 1px solid #888888; border-radius: 10px; }
+.samplewrapper{max-width: 630px; margin: 3.5em auto; padding:0.5em;border: 1px solid #888888; border-radius: 10px; }
 #content{ width: 450px; }
 select{ font-size: 14px;}
 .ir{display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
@@ -125,6 +124,10 @@ select{ font-size: 14px;}
 #popdown p{color: white;background-color: green; padding: 5px 20px; margin: 0 auto;}
 #notifyform{margin: 10px auto;}
 #notifylabel{border: 1px #000000 solid; padding: 6px; top: 10px; background-color: #66cdaa;}
+
+/*FIX IE6 and IE7 bugs */
+.oldie #introduction{background: url("") no-repeat right 50%;background-color:#E7FDF8;}
+.oldie .samplewrapper{width: 630px;}
 /*#footer{background-color:#999;color:#FFF;}*/
 /* ======================== MEDIA QUERIES ======================== */
 
