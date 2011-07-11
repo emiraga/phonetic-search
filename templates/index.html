@@ -71,7 +71,7 @@
                           <!--<label for="reciter" id="reciterlabel">Reciter:</label>-->
                           <select id="reciter" name="reciter" style="display: block">
                               {% for reciter in reciters %}
-                                <option value="{{ forloop.counter0 }}">{{ reciter }}</option>
+                                <option value="{{ reciter.prefix }}">{{ reciter.name }}</option>
                               {% endfor %}
                           </select>
                           <div class="mts">
@@ -152,12 +152,12 @@
   <script>window.ayah_list={{ayah_list}};window.surah_name={{surah_name}}</script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
-  <script src="js/plugins.js"></script>
+  <!--<script src="js/plugins.js"></script>-->
   <script src="js/libs/jquery.form.js"></script>
   <script src="js/libs/swfobject.js"></script>
   <script src="js/script.js"></script>
   <script>
-    var _gaq=[['_setAccount','UA-24289600-1'],['_trackPageview']];
+    var _gaq=[['_setAccount','{% if not debug %}UA-24289600-1{% endif %}'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));

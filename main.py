@@ -140,11 +140,11 @@ SURAH_NAME = [
 ]
 
 RECIT_LIST = [
-    'Abdul Basit Murattal',
-    'Abdullah Basfar',
-    'Abdurrahmaan As-Sudais',
-    'Hani Rifai',
-    'Minshawy Mujawwad',
+    {'name':'Abdullah Basfar', 'prefix':'basf0'},
+    {'name':'Hudhaify',        'prefix':'hudh1'},
+    {'name':'Ibrahim Akhdar',  'prefix':'ibr2'},
+    {'name':'Menshawi',        'prefix':'mensh3'},
+    {'name':'Muhammad Ayyoub', 'prefix':'muayy4'},
 ]
 
 # 1, 101...114
@@ -214,7 +214,7 @@ class MainHandler(webapp.RequestHandler):
             'ayah_list' : simplejson.dumps(AYAH_LIST),
             'surah_name' : simplejson.dumps(SURAH_NAME),
             'debug' : DEBUG,
-            'mp3url' : "/mp3/0_%d_%d.mp3" % (el['surah'], el['ayah']),
+            'mp3url' : "/mp3/%s_%d_%d.mp3" % (RECIT_LIST[0]['prefix'],el['surah'], el['ayah']),
             'surah' : el['surah'],
             'ayah' : el['ayah'],
             'ayah_title' : "Qur'an: "+ SURAH_NAME[el['surah']] +", " + str(el['ayah'])

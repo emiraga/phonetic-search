@@ -266,17 +266,17 @@ for (var i=100;i<=113;i++) {
 }
 
 var needRecit = [];
-console.log("'recit_list': [");
+console.log("#'recit_list': [");
 for (var j in recitations) {
-    if (recitations[j].bitrate === '192kbps') {
+    if (recitations[j].bitrate === '32kbps') {
         var folder = recitations[j].subfolder;
         if(folder.indexOf('English') < 0 && folder.indexOf('MultiLang') < 0) {
             needRecit.push(folder);
-            console.log(folder);
+            console.log('#'+folder);
         }
     }
 }
-console.log("]");
+console.log("#]");
 
 var shellprefix = 'wget -nc ';
 
@@ -286,10 +286,10 @@ for (var i=needSurah.length;i--;) {
     var isurah = surah+1; //1-based
     for (var ayah = 1; ayah <= numayah; ayah++) {
         //console.log(shellprefix+"http://www.everyayah.com/data/images_png/"+isurah+"_"+ayah+".png");
-        console.log('('+isurah+','+ayah+'),')
+        //console.log('('+isurah+','+ayah+'),')
         var mp3file = threeDigits(isurah)+threeDigits(ayah)+".mp3";
         for (var j=needRecit.length;j--;) {
-            //console.log(shellprefix+"http://www.everyayah.com/data/"+needRecit[j]+"/"+mp3file+" -O "+j+"_"+isurah+"_"+ayah+".mp3");
+            console.log(shellprefix+"http://www.everyayah.com/data/"+needRecit[j]+"/"+mp3file+" -O "+j+"_"+isurah+"_"+ayah+".mp3");
         }
     }
 }
