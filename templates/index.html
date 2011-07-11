@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Phonetic search</title>
+    <meta name="description" content="Qur'an phonetic search">
+    <meta name="author" content="Emir Habul; Kenan Kalajdzic">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/style.css?v=1">
+    <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">
+    <script src="js/libs/modernizr-1.7.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <div class="ribbon">
+        <h1 class="ir logo">Qur'an phonetic search</h1>
+      </div>
+    </header>
+
+    <div id="main" role="main">
+      <section id="introduction" class="ribboncol">
+        <div class="innerwrapper">
+          <h2 class="h2n1">Introduction</h2>
+          <p>
+            We believe we can build an excellent <strong>phonetic search of Qur'an</strong>.
+            Such tool would allow you to search contents of Holy Qur'an just by typing phrases like <em>"kulli shay in qadeer"</em>, 
+            or any other common variation of the spelling, like <em>"kuli šejin kadir"</em>.
+          </p>
+          <p>
+            We need your help to collect most common ways people spell-out Qur'anic verses.
+            Take a look below, it will take only couple of minutes.
+          </p>
+        </div>
+        <div class="innerwrapper">
+           <h2 class="h2n1">Research Process</h2>
+           <div class="stepsillustr">
+              <div class="step1">
+                <p><strong>Step 1</strong>: Collect samples</p>
+                <img src="img/s1.png" width="150px" height="150px" />
+              </div>
+              <div class="step2">
+                <p><strong>Step 2</strong>: Build a model</p>
+                <img src="img/s2.png" width="150px" height="150px" />
+              </div>
+              <div class="step3">
+                <p><strong>Step 3</strong>: Search engine</p>
+                <img src="img/s3.png" width="150px" height="150px" />
+              </div>
+           </div>
+        </div>
+      </section>
+
+      <section id="collect">
+          <div class="innerwrapper">
+              <h2 class="h2n1">Sample collection</h2>
+              <form action="/addsample" method="post" id="sampleform">
+                  <p>
+                    Play the audio sample, and enter what you hear.
+                    There is no right or wrong answer.
+                    If ayah is too long, you can enter just a part of it.
+                  </p>
+                  <div class="samplewrapper">
+                      <div class="rfloat hidden">
+                          <!--<label for="reciter" id="reciterlabel">Reciter:</label>-->
+                          <select id="reciter" name="reciter" style="display: block">
+                              {% for reciter in reciters %}
+                                <option value="{{ forloop.counter0 }}">{{ reciter }}</option>
+                              {% endfor %}
+                          </select>
+                          <div class="mts">
+                              <input type="checkbox" name="autoplay" id="autoplay"/>
+                              <label for="autoplay">Autoplay</label>
+                          </div>
+                      </div>
+                      <input id="seed" type="hidden" name="seed" value="{{ seed }}" />
+                      <input id="index" type="hidden" name="index" value="{{ index }}" />
+                      <input id="surah" type="hidden" name="surah" value="{{ surah }}" />
+                      <input id="ayah" type="hidden" name="ayah" value="{{ ayah }}" />
+
+                      <p id="ayahtitle">{{ayah_title}}</p>
+                      <object id="audioplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" height="24" width="290">
+                        <param name="movie" value="/swf/audio.swf" />
+                        <!--[if !IE]>-->
+                        <object type="application/x-shockwave-flash" data="/swf/audio.swf" height="24" width="290">
+                        <!--<![endif]-->
+                          <param name="quality" value="high">
+                          <param name="menu" value="false">
+                          <param name="FlashVars" value="SoundFile={{ mp3url }}">
+                          <p> Please install Flash Player to listen to this ayah,
+                           or refresh this page to try again. <a href="http://www.adobe.com/go/getflashplayer">
+                           <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+                        <!--[if !IE]>-->
+                        </object>
+                        <!--<![endif]-->
+                      </object>
+                      <p>
+                          <input type="text" id="content" name="content" value="" />
+                          <input type="submit" value="Submit" style="width: 170px;"/>
+                      </p>
+                      <div id="popdown" style="display: none">
+                          <p id="popmessage"></p>
+                      </div>
+                  </div>
+                  <p class="hint">
+                      Hint: For faster entry, check the "Autoplay" option and press <strong>Enter</strong>
+                      instead of clicking "Submit".
+                  </p>
+              </form>
+          </div>
+      </section>
+
+      <div class="ribbon" style="margin-top: -20px;"></div>
+      <section class="ribboncol" id="send_notification">
+        <div class="innerwrapper">
+          <h2 class="h2n1">When it will be ready?</h2>
+          <p>
+            You can leave you e-mail address and we promise to
+            send you a single notification once this is finished.
+          </p>
+          <form id="notifyform" action="/addemail" method="POST">
+              <p>
+                  <input type="email" name="email" value="" />
+                  <input type="submit" name="Submit" value="Add email" />
+                  <span id="notifylabel" style="display: none"></span>
+              </p>
+          </form>
+          <p>
+              It will take some time to collect sufficient number of samples.
+              You can help speed things up by getting more people involved.
+              Especially people from different: countries, languages, and dialects
+              will help us expose the diversity of this subject.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <footer id="footer">
+        <div class="innerwrapper">
+           <h2 class="h2n1"></h2>
+            &nbsp;
+        </div>
+    </footer>
+  </div>
+
+  <script>window.ayah_list={{ayah_list}};window.surah_name={{surah_name}}</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/libs/jquery.form.js"></script>
+  <script src="js/libs/swfobject.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    var _gaq=[['_setAccount','UA-24289600-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+</body>
+</html>

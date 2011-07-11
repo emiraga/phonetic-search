@@ -1,0 +1,17 @@
+application: phonetic-search
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /(.*\.(html|css|js|gif|jpg|png|ico|txt|xml|mp3|swf))
+  static_files: static/\1
+  upload: static/.*
+#  expiration: "0d"
+
+- url: /admin
+  script: main.py
+  login: admin
+
+- url: .*
+  script: main.py
