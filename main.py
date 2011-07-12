@@ -143,7 +143,7 @@ RECIT_LIST = [
     {'name':'Abdullah Basfar', 'prefix':'basf0'},
     {'name':'Hudhaify',        'prefix':'hudh1'},
     {'name':'Ibrahim Akhdar',  'prefix':'ibr2'},
-    {'name':'Menshawi',        'prefix':'mensh3'},
+    #{'name':'Menshawi',        'prefix':'mensh3'},
     {'name':'Muhammad Ayyoub', 'prefix':'muayy4'},
 ]
 
